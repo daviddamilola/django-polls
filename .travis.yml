@@ -8,4 +8,6 @@ services:
 before_script: pip install docker-compose
 
 script:
-    - docker-compose run web sh -c "python manage.py test && flake8"
+    - docker-compose run \
+        -e DJANGO_SETTINGS_MODULE=app.settings.testing \
+        --no-deps --rm app py.test;
